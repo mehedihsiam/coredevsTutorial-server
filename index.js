@@ -42,7 +42,8 @@ async function run() {
                 name: req.body.name,
                 email: req.body.email,
                 password: hashedPassword,
-                image: imageBuffer
+                image: imageBuffer,
+                role: 'User'
             }
             const result = await userCollection.insertOne(newUser)
             res.send(result)
