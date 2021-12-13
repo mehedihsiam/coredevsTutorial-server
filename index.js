@@ -161,8 +161,8 @@ async function run() {
 
         app.get('/subscriptions', async (req, res) => {
             const cursor = subscriptionCollection.find({}).sort({ _id: -1 });
-            const notes = await cursor.toArray();
-            res.send(notes);
+            const result = await cursor.toArray();
+            res.send(result);
         });
 
 
