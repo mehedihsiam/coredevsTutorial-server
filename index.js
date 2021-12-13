@@ -171,6 +171,12 @@ async function run() {
             const result = await subscriptionCollection.findOne(query);
             res.send(result);
         });
+        app.delete('/subscriptions/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) }
+            const result = await subscriptionCollection.deleteOne(query);
+            res.send(result);
+        });
 
 
     }
