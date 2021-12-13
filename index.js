@@ -165,6 +165,13 @@ async function run() {
             res.send(result);
         });
 
+        app.get('/subscriptions/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const result = await subscriptionCollection.findOne(query);
+            res.send(result);
+        });
+
 
     }
     finally {
