@@ -178,6 +178,23 @@ async function run() {
             res.send(result);
         });
 
+        app.put('/subscriptions/:id', async (req, res) => {
+            const id = req.params.id;
+            const subscriptionTitle = req.body.subscriptionTitle;
+            const subscriptionFee = req.body.subscriptionFee;
+            const subscriptionDetail = req.body.subscriptionDetail;
+            const filter = { _id: ObjectId(id) };
+            const updateDoc = {
+                $set: {
+                    subscriptionTitle,
+                    subscriptionDetail,
+                    subscriptionFee
+                },
+            };
+            const result = await subscriptionCollection.updateOne(filter, updateDoc);
+            res.json(result);
+        });
+
 
     }
     finally {
