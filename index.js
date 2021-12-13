@@ -155,7 +155,7 @@ async function run() {
 
         app.post('/subscriptions', async (req, res) => {
             const subscription = req.body;
-            const result = await noteCollection.insertOne(subscription);
+            const result = await subscriptionCollection.insertOne(subscription);
             res.send(result);
         });
 
