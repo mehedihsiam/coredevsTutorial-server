@@ -124,7 +124,8 @@ async function run() {
         });
 
         app.get('/notes', async (req, res) => {
-            const cursor = noteCollection.find({}).sort({ _id: -1 });
+            const query = req.query.email
+            const cursor = noteCollection.find(query).sort({ _id: -1 });
             const notes = await cursor.toArray();
             res.send(notes);
         });
