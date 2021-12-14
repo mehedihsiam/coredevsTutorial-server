@@ -117,6 +117,13 @@ async function run() {
             res.json(result);
         });
 
+        app.get('/profile', async (req, res) => {
+            const query = req.query.email
+            const cursor = userCollection.find({ email: query }).sort({ _id: -1 });
+            const result = await cursor.toArray();
+            res.send(result);
+        });
+
 
         app.get('/allUsers', async (req, res) => {
             const cursor = userCollection.find({}).sort({ _id: -1 })
