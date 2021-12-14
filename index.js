@@ -96,6 +96,21 @@ async function run() {
             res.send(result)
         });
 
+        app.put('/users/:id', async (req, res) => {
+            const id = req.params.id;
+            const name = req.body.name;
+            const email = req.body.email;
+            const filter = { _id: ObjectId(id) };
+            const updateDoc = {
+                $set: {
+                    name,
+                    email
+                },
+            };
+            const result = await userCollection.updateOne(filter, updateDoc);
+            res.json(result);
+        });
+
 
         app.get('/allUsers', async (req, res) => {
             const cursor = userCollection.find({}).sort({ _id: -1 })
